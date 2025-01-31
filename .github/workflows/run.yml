@@ -60,6 +60,7 @@ jobs:
           echo "MALICIOUS_HOST=https://raw.githubusercontent.com/elliotwutingfeng/Inversion-DNSBL-Blocklists/main/Google_hostnames_light.txt" >> $GITHUB_ENV
           echo "RULE_BANK_ID=https://raw.githubusercontent.com/malikshi/v2ray-rules-dat/rule/rule_bank-id.txt" >> $GITHUB_ENV
           echo "RULE_APPLE_MUSIC=https://raw.githubusercontent.com/v2fly/domain-list-community/refs/heads/master/data/apple" >> $GITHUB_ENV
+          echo "RULE_AMAZON=https://raw.githubusercontent.com/v2fly/domain-list-community/refs/heads/master/data/primevideo" >> $GITHUB_ENV
         shell: bash
 
       - name: Checkout the "hidden" branch of this repo
@@ -235,6 +236,8 @@ jobs:
           wget -O bank-id.txt $RULE_BANK_ID
           wget -O ./community/data/apple_music $RULE_APPLE_MUSIC
           wget -O apple_music.txt $RULE_APPLE_MUSIC
+          wget -O ./community/data/rule-amazon $RULE_AMAZON
+          wget -O rule-amazon.txt $$RULE_AMAZON
 
       - name: Filter and save d3ward.txt
         run: |
