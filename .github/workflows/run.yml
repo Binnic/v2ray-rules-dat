@@ -59,6 +59,7 @@ jobs:
           echo "RULE_SPEEDTEST=https://raw.githubusercontent.com/malikshi/v2ray-rules-dat/rule/rule_speedtest.txt" >> $GITHUB_ENV
           echo "MALICIOUS_HOST=https://raw.githubusercontent.com/elliotwutingfeng/Inversion-DNSBL-Blocklists/main/Google_hostnames_light.txt" >> $GITHUB_ENV
           echo "RULE_BANK_ID=https://raw.githubusercontent.com/malikshi/v2ray-rules-dat/rule/rule_bank-id.txt" >> $GITHUB_ENV
+          echo "RULE_APPLE_MUSIC=https://raw.githubusercontent.com/v2fly/domain-list-community/refs/heads/master/data/apple" >> $GITHUB_ENV
         shell: bash
 
       - name: Checkout the "hidden" branch of this repo
@@ -232,6 +233,8 @@ jobs:
           wget -O rule-malicious.txt $MALICIOUS_HOST
           wget -O ./community/data/bank-id $RULE_BANK_ID
           wget -O bank-id.txt $RULE_BANK_ID
+          wget -O ./community/data/apple_music $RULE_APPLE_MUSIC
+          wget -O apple_music.txt $RULE_APPLE_MUSIC
 
       - name: Filter and save d3ward.txt
         run: |
@@ -315,16 +318,3 @@ jobs:
           keep_latest: 1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Trigger Synch sing-box-geo
-        uses: actions/github-script@v6
-        with:
-          github-token: ${{ secrets.GHA_WORKFLOW_TRIGGER }}
-          script: |
-            const result = await github.rest.actions.createWorkflowDispatch({
-              owner: 'malikshi',
-              repo: 'sing-box-geo',
-              workflow_id: 'release.yaml',
-              ref: 'master'
-            })
-            console.log(result)
