@@ -237,7 +237,7 @@ jobs:
           wget -O ./community/data/apple_music $RULE_APPLE_MUSIC
           wget -O apple_music.txt $RULE_APPLE_MUSIC
           wget -O ./community/data/rule-amazon $RULE_AMAZON
-          wget -O rule-amazon.txt $$RULE_AMAZON
+          wget -O rule-amazon.txt $RULE_AMAZON
 
       - name: Filter and save d3ward.txt
         run: |
